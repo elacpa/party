@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,900&family=Special+Elite&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 :root {
   --bg-dark: #0e0d1a;
@@ -1224,25 +1224,25 @@ body::before {
       <textarea class="verdict-textarea" id="verdict" placeholder="Our group thinks the one truth that explains everything is..."></textarea>
     </div>
 
-    <!-- PDF Export Section -->
+    <!-- Screenshot Export Section -->
     <div class="pdf-section animate-in">
       <div class="pdf-section-label">→ Save Your Notes ←</div>
-      <p class="pdf-section-help">Save your notes and verdict as a PDF for your participation assignment. (Make sure to take notes first — empty PDFs are no fun.)</p>
-      <button class="btn-pdf" onclick="openPdfModal()">📋 Save My Notes as PDF</button>
+      <p class="pdf-section-help">Save a screenshot of your notes and verdict for your participation assignment. (Make sure to take notes first — empty screenshots are no fun.)</p>
+      <button class="btn-pdf" onclick="openPdfModal()">📸 Save My Notes as Image</button>
     </div>
   </div>
 
-  <!-- PDF Reminder Modal -->
+  <!-- Save Reminder Modal -->
   <div id="pdfModal" class="modal-overlay">
     <div class="modal">
-      <div class="modal-icon">📋</div>
+      <div class="modal-icon">📸</div>
       <h2>Heads up before you save</h2>
-      <p>This PDF is for <strong>YOUR records</strong> — to help you complete your <strong>separate participation assignment</strong>.</p>
-      <p class="modal-warning">⚠ This PDF is NOT the participation assignment. Don't turn it in.</p>
+      <p>This image is for <strong>YOUR records</strong> — to help you complete your <strong>separate participation assignment</strong>.</p>
+      <p class="modal-warning">⚠ This image is NOT the participation assignment. Don't turn it in.</p>
       <p>Save it, use it as evidence of your work, and reference it when you complete the actual participation assignment.</p>
       <div class="modal-actions">
         <button onclick="closePdfModal()" class="btn-cancel">Cancel</button>
-        <button onclick="confirmPDF()" class="btn-primary">Got it — Save PDF</button>
+        <button onclick="confirmPDF()" class="btn-primary">Got it — Save Image</button>
       </div>
     </div>
   </div>
@@ -1540,8 +1540,8 @@ function confirmPDF() {
 }
 
 function generateAndDownloadPDF() {
-  if (typeof html2pdf === 'undefined') {
-    alert('The PDF library didn\'t load. Try refreshing — or use your browser\'s print menu (Ctrl/Cmd+P) and select "Save as PDF" as the destination.');
+  if (typeof html2canvas === 'undefined') {
+    alert('The screenshot library didn\'t load. Try refreshing the page and saving again.');
     return;
   }
 
@@ -1562,24 +1562,24 @@ function generateAndDownloadPDF() {
   const verdict = document.getElementById('verdict').value.trim();
   const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-  const pdfContent = document.createElement('div');
-  pdfContent.style.cssText = `
-    padding: 0.6in;
+  const content = document.createElement('div');
+  content.style.cssText = `
+    padding: 40px 50px;
     font-family: Georgia, "Times New Roman", serif;
     color: #1a1a1a;
-    background: white;
-    width: 8.5in;
+    background: #ffffff;
+    width: 800px;
     line-height: 1.5;
     box-sizing: border-box;
   `;
 
-  pdfContent.innerHTML = `
+  content.innerHTML = `
     <div style="border-bottom: 3px double #1a1a1a; padding-bottom: 14px; margin-bottom: 22px;">
-      <div style="font-family: 'Courier New', monospace; font-size: 9px; letter-spacing: 0.25em; color: #888; margin-bottom: 6px;">ENGLISH 9 · UNIT 4 · THE ART OF DISGUISE</div>
-      <h1 style="font-family: Georgia, serif; font-size: 26px; font-weight: bold; margin: 0; color: #1a1a1a;">Party Detectives — My Notes</h1>
+      <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.25em; color: #888; margin-bottom: 6px;">ENGLISH 9 · UNIT 4 · THE ART OF DISGUISE</div>
+      <h1 style="font-family: Georgia, serif; font-size: 28px; font-weight: bold; margin: 0; color: #1a1a1a;">Party Detectives — My Notes</h1>
     </div>
 
-    <table style="width: 100%; margin-bottom: 26px; font-size: 11px; border-collapse: collapse;">
+    <table style="width: 100%; margin-bottom: 26px; font-size: 12px; border-collapse: collapse;">
       <tr>
         <td style="padding: 4px 8px 4px 0; width: 110px; color: #666;">Name:</td>
         <td style="padding: 4px 0; font-weight: bold;">${escapeHTML(currentName)}</td>
@@ -1594,53 +1594,64 @@ function generateAndDownloadPDF() {
       </tr>
     </table>
 
-    <h2 style="font-family: Georgia, serif; font-size: 16px; border-bottom: 1px solid #1a1a1a; padding-bottom: 4px; margin: 24px 0 14px 0;">Notes on Other Characters</h2>
+    <h2 style="font-family: Georgia, serif; font-size: 17px; border-bottom: 1px solid #1a1a1a; padding-bottom: 4px; margin: 24px 0 14px 0;">Notes on Other Characters</h2>
     ${notes.map(n => `
-      <div style="margin-bottom: 16px; page-break-inside: avoid;">
-        <h3 style="font-family: Georgia, serif; font-size: 13px; font-weight: bold; margin: 0 0 6px 0;">${escapeHTML(n.character)}</h3>
+      <div style="margin-bottom: 16px;">
+        <h3 style="font-family: Georgia, serif; font-size: 14px; font-weight: bold; margin: 0 0 6px 0;">${escapeHTML(n.character)}</h3>
         ${n.text
-          ? `<div style="font-size: 11px; padding: 10px 12px; background: #f7f1e3; border-left: 3px solid #d4a574; white-space: pre-wrap; line-height: 1.6;">${escapeHTML(n.text)}</div>`
-          : `<div style="font-size: 11px; padding: 10px 12px; background: #f7f1e3; border-left: 3px solid #d4a574; color: #999; font-style: italic;">No notes recorded.</div>`
+          ? `<div style="font-size: 12px; padding: 10px 12px; background: #f7f1e3; border-left: 3px solid #d4a574; white-space: pre-wrap; line-height: 1.6;">${escapeHTML(n.text)}</div>`
+          : `<div style="font-size: 12px; padding: 10px 12px; background: #f7f1e3; border-left: 3px solid #d4a574; color: #999; font-style: italic;">No notes recorded.</div>`
         }
       </div>
     `).join('')}
 
-    <h2 style="font-family: Georgia, serif; font-size: 16px; border-bottom: 1px solid #1a1a1a; padding-bottom: 4px; margin: 26px 0 14px 0;">Final Verdict</h2>
+    <h2 style="font-family: Georgia, serif; font-size: 17px; border-bottom: 1px solid #1a1a1a; padding-bottom: 4px; margin: 26px 0 14px 0;">Final Verdict</h2>
     ${verdict
-      ? `<div style="font-size: 11px; padding: 12px 14px; background: #f7f1e3; border-left: 3px solid #d4a574; white-space: pre-wrap; line-height: 1.6;">${escapeHTML(verdict)}</div>`
-      : `<div style="font-size: 11px; padding: 12px 14px; background: #f7f1e3; border-left: 3px solid #d4a574; color: #999; font-style: italic;">No verdict recorded.</div>`
+      ? `<div style="font-size: 12px; padding: 12px 14px; background: #f7f1e3; border-left: 3px solid #d4a574; white-space: pre-wrap; line-height: 1.6;">${escapeHTML(verdict)}</div>`
+      : `<div style="font-size: 12px; padding: 12px 14px; background: #f7f1e3; border-left: 3px solid #d4a574; color: #999; font-style: italic;">No verdict recorded.</div>`
     }
 
-    <div style="margin-top: 36px; padding-top: 14px; border-top: 1px dashed #aaa; font-size: 9px; color: #666; font-style: italic; text-align: center; line-height: 1.5;">
-      This document is for personal use to support the separate Participation Assignment.<br/>
-      It is NOT the participation assignment itself — do not submit this PDF as the assignment.
+    <div style="margin-top: 36px; padding-top: 14px; border-top: 1px dashed #aaa; font-size: 10px; color: #666; font-style: italic; text-align: center; line-height: 1.5;">
+      This image is for personal use to support the separate Participation Assignment.<br/>
+      It is NOT the participation assignment itself — do not submit this image as the assignment.
     </div>
   `;
 
-  // Append off-screen for rendering
-  pdfContent.style.position = 'absolute';
-  pdfContent.style.left = '-9999px';
-  pdfContent.style.top = '0';
-  document.body.appendChild(pdfContent);
+  // Position off-screen for rendering
+  content.style.position = 'absolute';
+  content.style.left = '-9999px';
+  content.style.top = '0';
+  document.body.appendChild(content);
 
   const safeName = (currentName || 'student').replace(/[^a-z0-9]/gi, '_');
-  const fileName = `party-detectives_${safeName}.pdf`;
+  const fileName = `party-detectives_${safeName}.png`;
 
-  const opt = {
-    margin: 0,
-    filename: fileName,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
-    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-    pagebreak: { mode: ['css', 'legacy'] }
-  };
-
-  html2pdf().set(opt).from(pdfContent).save().then(() => {
-    document.body.removeChild(pdfContent);
+  html2canvas(content, {
+    scale: 2,
+    useCORS: true,
+    backgroundColor: '#ffffff',
+    logging: false
+  }).then(canvas => {
+    canvas.toBlob(blob => {
+      if (!blob) {
+        document.body.removeChild(content);
+        alert('Something went wrong creating the image. Try refreshing the page and saving again.');
+        return;
+      }
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(url), 100);
+      document.body.removeChild(content);
+    }, 'image/png');
   }).catch(err => {
-    console.error('PDF generation failed:', err);
-    document.body.removeChild(pdfContent);
-    alert('Something went wrong saving the PDF. Try refreshing the page and saving again.');
+    console.error('Screenshot failed:', err);
+    if (document.body.contains(content)) document.body.removeChild(content);
+    alert('Something went wrong creating the image. Try refreshing the page and saving again.');
   });
 }
 
