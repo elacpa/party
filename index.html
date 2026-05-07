@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Party Detectives · English 9 · Unit 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,900&family=Special+Elite&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+:root {
+  --bg-dark: #0e0d1a;
+  --bg-deep: #1a1828;
+  --paper: #f4ecd8;
+  --paper-aged: #e8dec5;
+  --ink: #1a1a1a;
+  --ink-faded: #4a4438;
+  --gold: #d4a574;
+  --gold-dark: #a87f4f;
+  --classified: #8b1a1a;
+  --classified-bg: #2a1010;
+  --shadow: rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--bg-dark);
+  color: var(--paper);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(212,165,116,0.10), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139,26,26,0.07), transparent 50%);
+  padding: 20px;
+  line-height: 1.5;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+  z-index: 100;
+}
+
+.container { max-width: 1100px; margin: 0 auto; }
+
+/* ======= ROLE SELECTION ======= */
+.welcome { text-align: center; padding: 40px 20px; }
+
+.eyebrow {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.hero-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+.hero-subtitle {
+  font-style: italic;
+  font-size: 1.1rem;
+  max-width: 620px;
+  margin: 0 auto 16px;
+  color: rgba(244, 236, 216, 0.75);
+  line-height: 1.6;
+}
+
+.case-brief {
+  background: rgba(244, 236, 216, 0.04);
+  border-left: 3px solid var(--gold);
+  padding: 24px 28px;
+  max-width: 720px;
+  margin: 32px auto;
+  text-align: left;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.case-brief-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.case-brief em { color: var(--gold); font-style: italic; }
+.case-brief strong { color: var(--paper); font-weight: 600; }
+
+.brief-rule {
+  display: block;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(212, 165, 116, 0.3);
+  font-size: 0.85rem;
+  color: rgba(244, 236, 216, 0.7);
+}
+
+/* Example/Demo section */
+.example-section {
+  max-width: 760px;
+  margin: 40px auto 10px;
+  padding: 22px 24px 26px;
+  background: rgba(212, 165, 116, 0.05);
+  border: 1px dashed rgba(212, 165, 116, 0.4);
+  border-radius: 4px;
+}
+
+.example-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.example-helper {
+  font-style: italic;
+  text-align: center;
+  font-size: 0.92rem;
+  color: rgba(244, 236, 216, 0.75);
+  margin: 0 auto 20px;
+  max-width: 560px;
+  line-height: 1.55;
+}
+
+.example-card-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.example-card-wrapper .role-card {
+  max-width: 340px;
+  width: 100%;
+  position: relative;
+}
+
+.example-card-wrapper .role-card::before { display: none; }
+
+.example-card-wrapper .role-card::after {
+  content: 'DEMO';
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--classified);
+  color: var(--paper);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+.divider-or {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 760px;
+  margin: 30px auto 18px;
+  color: rgba(244, 236, 216, 0.4);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+}
+
+.divider-or::before,
+.divider-or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(244, 236, 216, 0.15);
+}
+
+.role-prompt {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin: 30px 0 28px;
+}
+
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+.role-card {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 26px 22px 24px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+  border: none;
+  font-family: inherit;
+  border-radius: 2px;
+  box-shadow: 0 6px 20px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.role-card::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 28px;
+  height: 28px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0.18;
+}
+
+.role-card:hover {
+  transform: translateY(-5px) rotate(-0.4deg);
+  box-shadow: 0 14px 30px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.5);
+}
+.role-card:nth-child(2):hover { transform: translateY(-5px) rotate(0.4deg); }
+.role-card:nth-child(4):hover { transform: translateY(-5px) rotate(0.4deg); }
+
+.role-number {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-dark);
+  margin-bottom: 10px;
+}
+
+.role-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.role-tag {
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--ink-faded);
+  line-height: 1.5;
+}
+
+/* ======= ID FORM VIEW ======= */
+.id-form-view { display: none; padding: 60px 20px; }
+.id-form-view.active { display: block; }
+
+.id-form-card {
+  max-width: 520px;
+  margin: 0 auto;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 44px 40px 38px;
+  border-radius: 3px;
+  box-shadow: 0 14px 40px var(--shadow);
+  position: relative;
+}
+
+.id-form-card::before {
+  content: 'DETECTIVE ID';
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: var(--classified);
+  border: 2px solid var(--classified);
+  padding: 4px 10px;
+  transform: rotate(8deg);
+  opacity: 0.7;
+}
+
+.step-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.id-form-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+  color: var(--ink);
+  line-height: 1.05;
+}
+
+.id-form-card h2 em { color: var(--gold-dark); font-style: italic; font-weight: 400; }
+
+.id-form-intro {
+  color: var(--ink-faded);
+  font-size: 0.98rem;
+  margin-bottom: 24px;
+  line-height: 1.55;
+}
+
+.role-preview {
+  background: var(--paper-aged);
+  border-left: 3px solid var(--gold);
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+  font-family: 'Special Elite', monospace;
+}
+
+.role-preview strong {
+  color: var(--ink);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.form-field { margin-bottom: 18px; }
+
+.form-field label {
+  display: block;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 6px;
+}
+
+.form-field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(0,0,0,0.2);
+  font-family: 'Special Elite', monospace;
+  font-size: 1rem;
+  background: white;
+  color: var(--ink);
+  border-radius: 2px;
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.25);
+}
+
+.form-error {
+  color: var(--classified);
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: none;
+}
+
+.form-error.show { display: block; }
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 26px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn-back {
+  background: transparent;
+  color: var(--ink-faded);
+  border: none;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  padding: 10px 4px;
+}
+
+.btn-back:hover { color: var(--ink); }
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 12px 22px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover { background: var(--gold-dark); }
+
+/* ======= ACTIVITY VIEW ======= */
+.activity-view { display: none; }
+.activity-view.active { display: block; }
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 0;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(244, 236, 216, 0.15);
+}
+
+.activity-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.activity-title em { color: var(--gold); font-style: italic; font-weight: 400; }
+
+.detective-id {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(212, 165, 116, 0.08);
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  padding: 8px 14px;
+  border-radius: 3px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.78rem;
+}
+
+.detective-id-name {
+  color: var(--paper);
+  font-weight: bold;
+}
+
+.detective-id-group {
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.detective-id-divider { color: rgba(244, 236, 216, 0.3); }
+
+.btn-reset {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  background: transparent;
+  color: var(--paper);
+  border: 1px solid rgba(244, 236, 216, 0.3);
+  padding: 8px 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.btn-reset:hover {
+  background: rgba(244, 236, 216, 0.1);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.demo-banner {
+  background: rgba(139, 26, 26, 0.15);
+  border: 1px dashed var(--classified);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  border-radius: 3px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.88rem;
+  color: var(--paper);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.demo-banner strong { color: var(--gold); letter-spacing: 0.15em; }
+
+/* Character file */
+.character-file {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 44px 44px 40px;
+  border-radius: 3px;
+  position: relative;
+  margin-bottom: 32px;
+  box-shadow: 0 14px 40px var(--shadow);
+}
+
+.character-file::before {
+  content: 'CONFIDENTIAL';
+  position: absolute;
+  top: 22px;
+  right: 30px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: var(--classified);
+  border: 2px solid var(--classified);
+  padding: 4px 10px;
+  transform: rotate(8deg);
+  opacity: 0.7;
+}
+
+.file-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.file-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.file-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  margin: 24px 0 28px;
+}
+
+.file-section { margin-bottom: 28px; }
+.file-section:last-child { margin-bottom: 0; }
+
+.file-section-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(168, 127, 79, 0.3);
+}
+
+.situation {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--ink-faded);
+  font-style: italic;
+}
+
+.monologue {
+  background: var(--paper-aged);
+  border-left: 4px solid var(--gold);
+  padding: 26px 30px 26px 36px;
+  font-family: 'Special Elite', monospace;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  position: relative;
+  color: var(--ink);
+}
+
+.monologue::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  left: 18px;
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.act-list { list-style: none; padding: 0; counter-reset: act-counter; }
+
+.act-list li {
+  position: relative;
+  padding: 14px 0 14px 40px;
+  font-size: 1rem;
+  line-height: 1.55;
+  border-bottom: 1px dashed rgba(168, 127, 79, 0.3);
+}
+
+.act-list li:last-child { border-bottom: none; }
+
+.act-list li::before {
+  content: counter(act-counter);
+  counter-increment: act-counter;
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 26px;
+  height: 26px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* Classified secret box (for everyone except Maya) */
+.secret-box {
+  background: var(--classified-bg);
+  color: var(--paper);
+  padding: 28px 32px 24px;
+  border: 2px dashed var(--classified);
+  margin-top: 14px;
+  position: relative;
+}
+
+.secret-box::before {
+  content: '⚠  CLASSIFIED  ⚠';
+  position: absolute;
+  top: -11px;
+  left: 24px;
+  background: var(--classified-bg);
+  padding: 0 12px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--classified);
+}
+
+.secret-warning {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.secret-list { list-style: none; padding: 0; }
+
+.secret-list li {
+  padding: 11px 0 11px 26px;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.secret-list li::before {
+  content: '✗';
+  position: absolute;
+  left: 0;
+  color: var(--classified);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.secret-list li strong { color: var(--gold); font-weight: 600; }
+
+/* Maya's "blind spot" box */
+.blindspot-box {
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.08), rgba(212, 165, 116, 0.03));
+  color: var(--paper);
+  padding: 30px 34px 28px;
+  border: 2px solid var(--gold);
+  margin-top: 14px;
+  position: relative;
+}
+
+.blindspot-box::before {
+  content: '◆  HER OWN BLIND SPOT  ◆';
+  position: absolute;
+  top: -11px;
+  left: 24px;
+  background: var(--bg-dark);
+  padding: 0 14px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+
+.blindspot-text {
+  font-style: italic;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: rgba(244, 236, 216, 0.92);
+}
+
+.blindspot-text p { margin-bottom: 14px; }
+.blindspot-text p:last-child { margin-bottom: 0; }
+
+.blindspot-text strong {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 600;
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+  padding-top: 6px;
+}
+
+/* Detective tools */
+.tools-section {
+  background: rgba(244, 236, 216, 0.04);
+  border: 1px solid rgba(244, 236, 216, 0.1);
+  padding: 32px 36px;
+  margin-bottom: 36px;
+  border-radius: 3px;
+}
+
+.tools-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+
+.tools-title em { color: var(--gold); font-style: italic; font-weight: 400; }
+
+.tools-subtitle {
+  font-style: italic;
+  color: rgba(244, 236, 216, 0.65);
+  margin-bottom: 22px;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.tools-subtitle strong { color: var(--gold); font-style: normal; font-weight: 600; }
+
+.tools-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.tools-list li {
+  background: rgba(244, 236, 216, 0.06);
+  padding: 14px 18px;
+  border-left: 2px solid var(--gold);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--paper);
+}
+
+/* Notes section */
+.notes-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.notes-section h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+
+.notes-intro {
+  font-style: italic;
+  color: rgba(244, 236, 216, 0.65);
+  margin-bottom: 26px;
+  max-width: 760px;
+  line-height: 1.65;
+}
+
+.notes-intro em { color: var(--gold); }
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 22px;
+}
+
+.note-card {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 26px 22px 22px;
+  border-radius: 2px;
+  box-shadow: 0 6px 20px var(--shadow);
+  position: relative;
+}
+
+.note-card::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 16px;
+  background: rgba(212, 165, 116, 0.55);
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.note-card-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.note-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.note-prompts {
+  background: var(--paper-aged);
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-faded);
+  border-left: 2px solid var(--gold);
+  line-height: 1.55;
+}
+
+.note-prompts span { display: block; margin: 3px 0; }
+
+.note-textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 14px;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: rgba(255,255,255,0.55);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink);
+  resize: vertical;
+  border-radius: 2px;
+}
+
+.note-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+}
+
+/* Verdict */
+.verdict-section {
+  background: var(--bg-deep);
+  border: 2px solid var(--gold);
+  padding: 36px 36px 32px;
+  margin-top: 36px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.verdict-section::before {
+  content: '★ THE VERDICT ★';
+  position: absolute;
+  top: -12px;
+  left: 30px;
+  background: var(--bg-dark);
+  padding: 0 14px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+
+.verdict-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+}
+
+.verdict-section h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+
+.verdict-prompt {
+  font-style: italic;
+  color: rgba(244, 236, 216, 0.78);
+  margin-bottom: 8px;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 800px;
+}
+
+.verdict-prompt strong { color: var(--paper); font-weight: 600; font-style: normal; }
+
+.verdict-hint {
+  display: block;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(212, 165, 116, 0.3);
+  font-family: 'Special Elite', monospace;
+  font-style: normal;
+  font-size: 0.82rem;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+.verdict-textarea {
+  width: 100%;
+  min-height: 130px;
+  background: rgba(244, 236, 216, 0.06);
+  color: var(--paper);
+  border: 1px solid rgba(244, 236, 216, 0.2);
+  padding: 14px 16px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  resize: vertical;
+  margin-top: 18px;
+}
+
+.verdict-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: rgba(244, 236, 216, 0.09);
+}
+
+/* PDF Export */
+.pdf-section {
+  margin-top: 50px;
+  padding: 32px 28px;
+  text-align: center;
+  border-top: 1px dashed rgba(212, 165, 116, 0.3);
+}
+
+.pdf-section-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.pdf-section-help {
+  font-style: italic;
+  color: rgba(244, 236, 216, 0.6);
+  font-size: 0.92rem;
+  margin-bottom: 20px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.btn-pdf {
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  padding: 14px 28px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s, transform 0.2s;
+  font-weight: bold;
+}
+
+.btn-pdf:hover {
+  background: #e8b888;
+  transform: translateY(-1px);
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: var(--paper);
+  color: var(--ink);
+  max-width: 480px;
+  width: 100%;
+  padding: 36px 34px 30px;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  position: relative;
+  animation: modalIn 0.3s ease-out;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-icon {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.modal h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+
+.modal p {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  color: var(--ink-faded);
+}
+
+.modal p:last-of-type { margin-bottom: 0; }
+
+.modal-warning {
+  background: rgba(139, 26, 26, 0.08);
+  border-left: 3px solid var(--classified);
+  padding: 10px 14px;
+  font-weight: 600;
+  color: var(--classified) !important;
+  font-size: 0.95rem !important;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: var(--ink-faded);
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 11px 20px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.btn-cancel:hover { background: rgba(0,0,0,0.05); }
+
+.modal .btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.modal .btn-primary:hover { background: #000; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in { animation: fadeUp 0.55s ease-out backwards; }
+.animate-in:nth-child(1) { animation-delay: 0.05s; }
+.animate-in:nth-child(2) { animation-delay: 0.18s; }
+.animate-in:nth-child(3) { animation-delay: 0.31s; }
+.animate-in:nth-child(4) { animation-delay: 0.44s; }
+.animate-in:nth-child(5) { animation-delay: 0.57s; }
+
+.role-card { animation: fadeUp 0.5s ease-out backwards; }
+.role-card:nth-child(1) { animation-delay: 0.10s; }
+.role-card:nth-child(2) { animation-delay: 0.20s; }
+.role-card:nth-child(3) { animation-delay: 0.30s; }
+.role-card:nth-child(4) { animation-delay: 0.40s; }
+.role-card:nth-child(5) { animation-delay: 0.50s; }
+
+@media (max-width: 640px) {
+  body { padding: 14px; }
+  .character-file { padding: 28px 22px; }
+  .character-file::before { right: 16px; top: 16px; font-size: 0.6rem; padding: 3px 8px; }
+  .monologue { padding: 22px 22px 22px 28px; font-size: 1rem; }
+  .tools-section { padding: 24px 22px; }
+  .verdict-section { padding: 28px 22px 24px; }
+  .secret-box, .blindspot-box { padding: 24px 22px 20px; }
+  .id-form-card { padding: 32px 24px 28px; }
+  .modal { padding: 28px 22px 22px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- WELCOME / ROLE SELECTION -->
+  <div id="welcome" class="welcome">
+    <div class="eyebrow">English 9 · Unit 4 · The Art of Disguise</div>
+    <h1 class="hero-title">Party<br><em>Detectives</em></h1>
+    <p class="hero-subtitle">Five people. Five different reasons to hide the truth. One mystery that connects them all.</p>
+
+    <div class="case-brief">
+      <span class="case-brief-label">The Case</span>
+      Your peer <strong>Maya</strong> always avoids parties. Yesterday she said she wasn't going. Today she suddenly is. Five people have something to say about it — and <em>each one is hiding something for a completely different reason.</em>
+      <span class="brief-rule">This isn't about catching one liar. It's about finding the <em>one</em> truth that explains why every single person — including Maya — is acting strange.</span>
+    </div>
+
+    <!-- DEMO / EXAMPLE ROLE -->
+    <div class="example-section">
+      <div class="example-label">→ Want to see how it works first? ←</div>
+      <p class="example-helper">Try the demo role below. Different scenario (no spoilers!), same structure as the real thing.</p>
+      <div class="example-card-wrapper">
+        <button class="role-card" onclick="pickRole('example')">
+          <div class="role-number">EXAMPLE · WALKTHROUGH</div>
+          <div class="role-name">The Roommate</div>
+          <div class="role-tag">A pizza disappeared. You were home alone. Try this one to see what to expect.</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="divider-or">or jump into the real case</div>
+
+    <div class="role-prompt">→ Choose Your Role ←</div>
+
+    <div class="roles-grid" id="rolesGrid"></div>
+  </div>
+
+  <!-- ID FORM VIEW -->
+  <div id="idForm" class="id-form-view">
+    <div class="id-form-card">
+      <div class="step-label">Step 2 of 2 · Before you go in</div>
+      <h2>Detective <em>ID Card</em></h2>
+      <p class="id-form-intro">Quick — let me know who you are and what group you're in. This goes on your notes file.</p>
+
+      <div class="role-preview" id="rolePreview"></div>
+
+      <div class="form-field">
+        <label for="nameInput">Your Name</label>
+        <input type="text" id="nameInput" placeholder="First & last" autocomplete="off" />
+        <div class="form-error" id="nameError">Please enter your name.</div>
+      </div>
+
+      <div class="form-field">
+        <label for="groupInput">Group / Breakout #</label>
+        <input type="text" id="groupInput" placeholder="e.g. Group 3" autocomplete="off" />
+        <div class="form-error" id="groupError">Please enter your group number.</div>
+      </div>
+
+      <div class="form-actions">
+        <button onclick="backToRoles()" class="btn-back">← Back to roles</button>
+        <button onclick="confirmId()" class="btn-primary">Enter the Case →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY VIEW -->
+  <div id="activity" class="activity-view">
+    <div class="activity-header">
+      <div class="activity-title">Party <em>Detectives</em> · Case File</div>
+      <div class="detective-id" id="detectiveId">
+        <span class="detective-id-name" id="detectiveIdName"></span>
+        <span class="detective-id-divider">·</span>
+        <span class="detective-id-group" id="detectiveIdGroup"></span>
+      </div>
+    </div>
+
+    <div id="demoBanner"></div>
+
+    <div id="characterFile"></div>
+
+    <div class="tools-section animate-in">
+      <h2 class="tools-title">Detective <em>Tools</em></h2>
+      <p class="tools-subtitle">Each character is hiding something — but for completely different reasons. The truth only comes out when you connect what they're <strong>all</strong> avoiding. Use these to dig.</p>
+      <ul class="tools-list">
+        <li>"You said ____, but yesterday you said ____. Help me connect those dots."</li>
+        <li>"You laughed right there — what was that laugh about?"</li>
+        <li>"You won't give a specific answer. Why are you keeping it general?"</li>
+        <li>"You keep zooming out. What are you avoiding talking about?"</li>
+        <li>"You paused before you said that. What were you about to say?"</li>
+        <li>"What do all five of us have a reason to hide right now?"</li>
+      </ul>
+    </div>
+
+    <div class="notes-section animate-in">
+      <h2>Evidence <em>Notebook</em></h2>
+      <p class="notes-intro">Take notes as the others perform. Watch their body language. Listen for what they <em>won't</em> say. Each person is hiding a different piece of the same puzzle — and one of them might not even know they're hiding it.</p>
+      <div class="notes-grid" id="notesGrid"></div>
+    </div>
+
+    <div class="verdict-section animate-in">
+      <h2>Final <em>Verdict</em></h2>
+      <p class="verdict-prompt">It's not about catching one liar. Each person is hiding something — for a different reason. <strong>What's the ONE truth that would explain why every single person, in every different way, is acting strange?</strong>
+        <span class="verdict-hint">→ Hint: someone in this room may not even realize they're hiding it.</span>
+      </p>
+      <textarea class="verdict-textarea" id="verdict" placeholder="Our group thinks the one truth that explains everything is..."></textarea>
+    </div>
+
+    <!-- PDF Export Section -->
+    <div class="pdf-section animate-in">
+      <div class="pdf-section-label">→ Save Your Notes ←</div>
+      <p class="pdf-section-help">Save your notes and verdict as a PDF for your participation assignment. (Make sure to take notes first — empty PDFs are no fun.)</p>
+      <button class="btn-pdf" onclick="openPdfModal()">📋 Save My Notes as PDF</button>
+    </div>
+  </div>
+
+  <!-- PDF Reminder Modal -->
+  <div id="pdfModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-icon">📋</div>
+      <h2>Heads up before you save</h2>
+      <p>This PDF is for <strong>YOUR records</strong> — to help you complete your <strong>separate participation assignment</strong>.</p>
+      <p class="modal-warning">⚠ This PDF is NOT the participation assignment. Don't turn it in.</p>
+      <p>Save it, use it as evidence of your work, and reference it when you complete the actual participation assignment.</p>
+      <div class="modal-actions">
+        <button onclick="closePdfModal()" class="btn-cancel">Cancel</button>
+        <button onclick="confirmPDF()" class="btn-primary">Got it — Save PDF</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ROLES = {
+  example: {
+    name: 'The Roommate',
+    tag: "EXAMPLE — Try this one to see what to expect.",
+    isExample: true,
+    situation: "Your roommate's leftover pizza disappeared from the fridge last night. You were home alone. They are NOT happy.",
+    monologue: "I have NO idea what happened to that pizza. I was here all night, but I was watching TV the whole time. I don't even really like pepperoni. Could've been the cat. We should probably check the cat.",
+    howTo: [
+      "Speak a little too fast.",
+      "Glance at the door once.",
+      "Wipe your hands on your pants — even though they're not wet.",
+      "Bring up the cat twice."
+    ],
+    blindspot: false,
+    secret: [
+      "You ate the pizza at 2 AM.",
+      "You panicked, ate the whole thing, and now feel terrible.",
+      "You're trying to redirect everyone toward <strong>the cat theory</strong>.",
+      "If anyone says \"the cat doesn't even like pepperoni\" — you're cooked."
+    ]
+  },
+  maya: {
+    name: 'Maya',
+    tag: "Going to the party. Convinced you just changed your mind.",
+    situation: "You just told everyone you're going to the party tonight. You don't know why you said yes — but you genuinely think you just changed your mind.",
+    monologue: "I don't get why everyone's acting like this is a big deal. It's literally just a party. People go to parties. I just… changed my mind, okay? I'm allowed to do that. It's not that deep. It's really not that deep.",
+    howTo: [
+      "Start confident, then speed up slightly toward the end.",
+      "The repetition of \"it's not that deep\" is the tell — don't rush past it.",
+      "Force a small, awkward laugh in the wrong spot.",
+      "Cross your arms when you say \"I'm allowed to change my mind.\"",
+      "If the Best Friend speaks, pause for a half-second like you almost said something — then don't."
+    ],
+    blindspot: true,
+    blindspotText: [
+      "You don't have a secret. You're not lying — not even to yourself. You really, fully believe you just changed your mind.",
+      "But sometimes your body says things you don't realize. You repeat words. You laugh in the wrong place. You cross your arms. You can't tell anyone the real reason — because you don't know it either.",
+      "<strong>Don't play someone hiding something. Play someone who really, truly believes she's fine.</strong>"
+    ]
+  },
+  bestfriend: {
+    name: 'The Best Friend',
+    tag: "You know everything. You promised not to tell.",
+    situation: "Maya told you something private weeks ago. You promised to keep it. Yesterday she swore she wasn't going to this party. Today she suddenly is — and you know exactly why.",
+    monologue: "I mean… yeah, it's just surprising. Like, yesterday you were saying you weren't going no matter what. But if you're good, then I'm good. I just don't want you doing this for the wrong reasons.",
+    howTo: [
+      "Soft, careful tone.",
+      "Pause before \"if you're good\" — like you're testing whether she'll admit it.",
+      "Slight worried look, but don't make it obvious."
+    ],
+    blindspot: false,
+    secret: [
+      "You know exactly why Maya is going — she's been talking about <strong>a specific person</strong> for weeks.",
+      "You promised her you wouldn't tell anyone — and you take promises seriously.",
+      "You're trying to drop hints so someone else figures it out — that way you're not the one who broke the promise.",
+      "If asked direct questions, deflect — but let the hesitation show."
+    ]
+  },
+  parent: {
+    name: 'The Parent',
+    tag: "You think Maya is finally \"growing.\" You're proud of yourself.",
+    situation: "You've been telling Maya for weeks that she needs to \"put herself out there.\" When she said yes to the party, you felt relieved. You don't actually know why she's going.",
+    monologue: "This is a good thing. She needs this. You can't just hide from life forever. Going to one party isn't a problem — it's growth. Sometimes you have to push people a little for their own good.",
+    howTo: [
+      "Calm, controlled tone — slightly impatient with anyone who pushes back.",
+      "Use abstract words: \"growth,\" \"putting herself out there.\" Don't talk about the specific party.",
+      "Nod like your logic is obvious. Don't ask any questions about why she's going."
+    ],
+    blindspot: false,
+    secret: [
+      "You don't actually know <strong>the specific reason</strong> she's going — you assume it's general \"socializing.\"",
+      "You've been pushing her hard for weeks, and you're proud of yourself for finally getting through.",
+      "You don't want to admit you've been worried about her socially — that would mean admitting you've been pressuring her.",
+      "If asked \"why is she going?\" — you'll talk about <strong>her</strong>, not the party. That's the tell."
+    ]
+  },
+  sibling: {
+    name: 'The Older Sibling',
+    tag: "You've noticed things you weren't supposed to. You're protecting her.",
+    situation: "You've been around the house. You've heard Maya practicing what to say to someone. You've seen her checking her phone. You've put pieces together — but Maya doesn't know you know.",
+    monologue: "Everyone needs to chill. It's literally one night. She'll go, she'll come back, and that's it. People are overthinking this way too much.",
+    howTo: [
+      "Defensive tone. Slight tension underneath.",
+      "Avoid eye contact once.",
+      "Refuse to engage with WHY this party — only zoom out to \"she'll be fine.\""
+    ],
+    blindspot: false,
+    secret: [
+      "You've overheard Maya practicing what to say to <strong>someone</strong>, checking her phone constantly, asking about her outfit.",
+      "You've put it together — there's a reason this party matters, and it's not just \"a party.\"",
+      "You're not protecting her from going. You're protecting her from being <strong>exposed</strong> — embarrassed in front of a parent or classmate.",
+      "If pushed with specific questions (\"did she ask about her outfit?\"), you'll dodge. Tension shows when someone says \"this isn't like her.\""
+    ]
+  },
+  classmate: {
+    name: 'The Classmate',
+    tag: "You saw something specific. You won't say what.",
+    situation: "You're not close to Maya. But you saw a small moment recently — a hallway, a laugh, a look. It clicked. You know what changed yesterday. You're just not going to admit you noticed.",
+    monologue: "This doesn't really make sense. People don't just flip like that overnight. Either something happened… or someone's pushing her. I don't know which, but it's not random.",
+    howTo: [
+      "Calm, analytical. Slight shrug.",
+      "Speak in patterns and observations — never give a specific moment.",
+      "If pushed for \"what did YOU see,\" deflect to general behavior."
+    ],
+    blindspot: false,
+    secret: [
+      "You saw a small moment recently between Maya and <strong>a specific person</strong> — and it explained everything.",
+      "You won't say what you saw because admitting you noticed makes you look like you watch Maya too much.",
+      "You speak in patterns (\"people don't just flip\") instead of evidence — to keep yourself out of it.",
+      "You'll only confirm the truth if someone <strong>else</strong> names it first. You're not going to put yourself out there."
+    ]
+  }
+};
+
+const MAIN_ROLE_ORDER = ['maya', 'bestfriend', 'parent', 'sibling', 'classmate'];
+
+// State
+let pendingRole = null;
+let currentRole = null;
+let currentName = '';
+let currentGroup = '';
+
+function escapeHTML(s) {
+  if (s == null) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function renderRoleSelection() {
+  const grid = document.getElementById('rolesGrid');
+  grid.innerHTML = MAIN_ROLE_ORDER.map((key, i) => {
+    const role = ROLES[key];
+    const num = String(i + 1).padStart(2, '0');
+    return `
+      <button class="role-card" onclick="pickRole('${key}')">
+        <div class="role-number">CHARACTER · ${num}</div>
+        <div class="role-name">${escapeHTML(role.name)}</div>
+        <div class="role-tag">${escapeHTML(role.tag)}</div>
+      </button>
+    `;
+  }).join('');
+}
+
+function pickRole(roleKey) {
+  pendingRole = roleKey;
+  const role = ROLES[roleKey];
+  document.getElementById('rolePreview').innerHTML = `Playing: <strong>${escapeHTML(role.name)}</strong>`;
+  document.getElementById('welcome').style.display = 'none';
+  document.getElementById('idForm').classList.add('active');
+  document.getElementById('nameError').classList.remove('show');
+  document.getElementById('groupError').classList.remove('show');
+  // Pre-fill from previous if they hit back
+  document.getElementById('nameInput').value = currentName;
+  document.getElementById('groupInput').value = currentGroup;
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  setTimeout(() => document.getElementById('nameInput').focus(), 100);
+}
+
+function backToRoles() {
+  pendingRole = null;
+  document.getElementById('idForm').classList.remove('active');
+  document.getElementById('welcome').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function confirmId() {
+  const name = document.getElementById('nameInput').value.trim();
+  const group = document.getElementById('groupInput').value.trim();
+  let valid = true;
+  if (!name) { document.getElementById('nameError').classList.add('show'); valid = false; }
+  else { document.getElementById('nameError').classList.remove('show'); }
+  if (!group) { document.getElementById('groupError').classList.add('show'); valid = false; }
+  else { document.getElementById('groupError').classList.remove('show'); }
+  if (!valid) return;
+  currentName = name;
+  currentGroup = group;
+  currentRole = pendingRole;
+  document.getElementById('idForm').classList.remove('active');
+  renderActivity(currentRole);
+}
+
+function renderActivity(roleKey) {
+  const role = ROLES[roleKey];
+  const isExample = role.isExample;
+
+  // Header detective ID
+  document.getElementById('detectiveIdName').textContent = currentName;
+  document.getElementById('detectiveIdGroup').textContent = currentGroup;
+
+  // Demo banner if example
+  document.getElementById('demoBanner').innerHTML = isExample ? `
+    <div class="demo-banner">
+      <strong>DEMO MODE</strong> — This is an example role about a missing pizza, not the real Maya case. Use it to walk through how the page works. The notes section below shows the real characters students will be working with.
+    </div>
+  ` : '';
+
+  // Build the truth section — different for Maya
+  let truthSection;
+  if (role.blindspot) {
+    truthSection = `
+      <div class="file-section">
+        <div class="file-section-label">What's True for You</div>
+        <div class="blindspot-box">
+          <div class="blindspot-text">
+            ${role.blindspotText.map(p => `<p>${p}</p>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  } else {
+    truthSection = `
+      <div class="file-section">
+        <div class="file-section-label">What You're Hiding · And Why</div>
+        <div class="secret-box">
+          <div class="secret-warning">Don't say this out loud. Let your acting hint at it. If your group corners you on something true, you have to admit it.</div>
+          <ul class="secret-list">
+            ${role.secret.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    `;
+  }
+
+  document.getElementById('characterFile').innerHTML = `
+    <div class="character-file animate-in">
+      <div class="file-label">Character File</div>
+      <div class="file-name">${escapeHTML(role.name)}</div>
+      <div class="file-divider"></div>
+
+      <div class="file-section">
+        <div class="file-section-label">What's Happening</div>
+        <p class="situation">${escapeHTML(role.situation)}</p>
+      </div>
+
+      <div class="file-section">
+        <div class="file-section-label">Your Monologue · Read Aloud</div>
+        <div class="monologue">${escapeHTML(role.monologue)}</div>
+      </div>
+
+      <div class="file-section">
+        <div class="file-section-label">How to Act It</div>
+        <ul class="act-list">
+          ${role.howTo.map(item => `<li>${escapeHTML(item)}</li>`).join('')}
+        </ul>
+      </div>
+
+      ${truthSection}
+    </div>
+  `;
+
+  // Notes — show all 5 main characters in example mode (since example isn't one of them),
+  // otherwise show the OTHER 4 main characters
+  const notesRoles = isExample
+    ? MAIN_ROLE_ORDER
+    : MAIN_ROLE_ORDER.filter(k => k !== roleKey);
+
+  document.getElementById('notesGrid').innerHTML = notesRoles.map(key => {
+    const r = ROLES[key];
+    return `
+      <div class="note-card">
+        <div class="note-card-label">Watch & Listen</div>
+        <div class="note-card-name">${escapeHTML(r.name)}</div>
+        <div class="note-prompts">
+          <span>· What are they hiding — and why are they hiding it?</span>
+          <span>· What word, pause, or look gave them away?</span>
+          <span>· What would they NEVER say out loud?</span>
+        </div>
+        <textarea class="note-textarea" data-character="${key}" placeholder="Notes on ${escapeHTML(r.name)}..."></textarea>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('activity').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+// === PDF EXPORT ===
+function openPdfModal() {
+  document.getElementById('pdfModal').classList.add('active');
+}
+
+function closePdfModal() {
+  document.getElementById('pdfModal').classList.remove('active');
+}
+
+function confirmPDF() {
+  closePdfModal();
+  generateAndDownloadPDF();
+}
+
+function generateAndDownloadPDF() {
+  if (typeof html2pdf === 'undefined') {
+    alert('The PDF library didn\'t load. Try refreshing — or use your browser\'s print menu (Ctrl/Cmd+P) and select "Save as PDF" as the destination.');
+    return;
+  }
+
+  const role = ROLES[currentRole];
+
+  // Collect notes
+  const notes = [];
+  document.querySelectorAll('.note-textarea').forEach(textarea => {
+    const character = textarea.dataset.character;
+    if (character && ROLES[character]) {
+      notes.push({
+        character: ROLES[character].name,
+        text: textarea.value.trim()
+      });
+    }
+  });
+
+  const verdict = document.getElementById('verdict').value.trim();
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  const pdfContent = document.createElement('div');
+  pdfContent.style.cssText = `
+    padding: 0.6in;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #1a1a1a;
+    background: white;
+    width: 8.5in;
+    line-height: 1.5;
+    box-sizing: border-box;
+  `;
+
+  pdfContent.innerHTML = `
+    <div style="border-bottom: 3px double #1a1a1a; padding-bottom: 14px; margin-bottom: 22px;">
+      <div style="font-family: 'Courier New', monospace; font-size: 9px; letter-spacing: 0.25em; color: #888; margin-bottom: 6px;">ENGLISH 9 · UNIT 4 · THE ART OF DISGUISE</div>
+      <h1 style="font-family: Georgia, serif; font-size: 26px; font-weight: bold; margin: 0; color: #1a1a1a;">Party Detectives — My Notes</h1>
+    </div>
+
+    <table style="width: 100%; margin-bottom: 26px; font-size: 11px; border-collapse: collapse;">
+      <tr>
+        <td style="padding: 4px 8px 4px 0; width: 110px; color: #666;">Name:</td>
+        <td style="padding: 4px 0; font-weight: bold;">${escapeHTML(currentName)}</td>
+        <td style="padding: 4px 8px 4px 0; width: 110px; color: #666;">Group:</td>
+        <td style="padding: 4px 0; font-weight: bold;">${escapeHTML(currentGroup)}</td>
+      </tr>
+      <tr>
+        <td style="padding: 4px 8px 4px 0; color: #666;">Role Played:</td>
+        <td style="padding: 4px 0; font-weight: bold;">${escapeHTML(role.name)}</td>
+        <td style="padding: 4px 8px 4px 0; color: #666;">Date:</td>
+        <td style="padding: 4px 0;">${escapeHTML(today)}</td>
+      </tr>
+    </table>
+
+    <h2 style="font-family: Georgia, serif; font-size: 16px; border-bottom: 1px solid #1a1a1a; padding-bottom: 4px; margin: 24px 0 14px 0;">Notes on Other Characters</h2>
+    ${notes.map(n => `
+      <div style="margin-bottom: 16px; page-break-inside: avoid;">
+        <h3 style="font-family: Georgia, serif; font-size: 13px; font-weight: bold; margin: 0 0 6px 0;">${escapeHTML(n.character)}</h3>
+        ${n.text
+          ? `<div style="font-size: 11px; padding: 10px 12px; background: #f7f1e3; border-left: 3px solid #d4a574; white-space: pre-wrap; line-height: 1.6;">${escapeHTML(n.text)}</div>`
+          : `<div style="font-size: 11px; padding: 10px 12px; background: #f7f1e3; border-left: 3px solid #d4a574; color: #999; font-style: italic;">No notes recorded.</div>`
+        }
+      </div>
+    `).join('')}
+
+    <h2 style="font-family: Georgia, serif; font-size: 16px; border-bottom: 1px solid #1a1a1a; padding-bottom: 4px; margin: 26px 0 14px 0;">Final Verdict</h2>
+    ${verdict
+      ? `<div style="font-size: 11px; padding: 12px 14px; background: #f7f1e3; border-left: 3px solid #d4a574; white-space: pre-wrap; line-height: 1.6;">${escapeHTML(verdict)}</div>`
+      : `<div style="font-size: 11px; padding: 12px 14px; background: #f7f1e3; border-left: 3px solid #d4a574; color: #999; font-style: italic;">No verdict recorded.</div>`
+    }
+
+    <div style="margin-top: 36px; padding-top: 14px; border-top: 1px dashed #aaa; font-size: 9px; color: #666; font-style: italic; text-align: center; line-height: 1.5;">
+      This document is for personal use to support the separate Participation Assignment.<br/>
+      It is NOT the participation assignment itself — do not submit this PDF as the assignment.
+    </div>
+  `;
+
+  // Append off-screen for rendering
+  pdfContent.style.position = 'absolute';
+  pdfContent.style.left = '-9999px';
+  pdfContent.style.top = '0';
+  document.body.appendChild(pdfContent);
+
+  const safeName = (currentName || 'student').replace(/[^a-z0-9]/gi, '_');
+  const fileName = `party-detectives_${safeName}.pdf`;
+
+  const opt = {
+    margin: 0,
+    filename: fileName,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+    pagebreak: { mode: ['css', 'legacy'] }
+  };
+
+  html2pdf().set(opt).from(pdfContent).save().then(() => {
+    document.body.removeChild(pdfContent);
+  }).catch(err => {
+    console.error('PDF generation failed:', err);
+    document.body.removeChild(pdfContent);
+    alert('Something went wrong saving the PDF. Try refreshing the page and saving again.');
+  });
+}
+
+// Click outside modal closes it
+document.getElementById('pdfModal').addEventListener('click', e => {
+  if (e.target.id === 'pdfModal') closePdfModal();
+});
+
+// Esc key closes modal
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closePdfModal();
+});
+
+renderRoleSelection();
+</script>
+</body>
+</html>
